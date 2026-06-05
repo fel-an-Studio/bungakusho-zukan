@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 文学賞図鑑
 
-## Getting Started
+芥川賞・直木賞・本屋大賞などの受賞作を、作品名・作家名・受賞年から探せる読書案内サイトです。
 
-First, run the development server:
+公開サイト： https://bungakusho-zukan.vercel.app
+
+## 概要
+
+文学賞図鑑は、受賞作から次に読む本を探すための個人制作サイトです。
+
+現在は文学賞を中心に掲載していますが、将来的には漫画・アニメ・映画・ゲームなどの受賞作も探せる「受賞作図鑑」に広げることを想定しています。
+
+## 現在できること
+
+- 受賞作一覧の表示
+- 作品名・作家名・出版社で検索
+- ジャンルで絞り込み
+- 文学賞で絞り込み
+- 受賞年で絞り込み
+- 作家名順・受賞年順・作品名順で並び替え
+- URLに検索条件を反映
+- 作品詳細ページの表示
+- 作品を Amazon / メルカリ / 楽天ブックス / 図書館 で探すリンク
+- 作家名から Wikipedia 検索へ移動
+- 出典リンクの表示
+
+## 使用技術
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Vercel
+
+## データについて
+
+掲載している受賞作データは、公式サイト等を確認しながら手入力しています。
+
+現在は以下の賞を中心に掲載しています。
+
+- 芥川賞
+- 直木賞
+- 本屋大賞
+
+各データには、可能な範囲で出典名・出典URL・確認日を記録しています。
+
+## 今後やりたいこと
+
+- 文学賞データの追加
+- ISBN・表紙画像の追加
+- 作品詳細ページの内容拡充
+- 作者別ページの作成
+- 賞別ページの作成
+- 漫画・映画・アニメ・ゲームなどへのジャンル拡張
+- CSVやスプレッドシートによるデータ管理
+- 新しい受賞情報の半自動取得
+
+## 開発メモ
+
+ローカルで起動する場合：
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
