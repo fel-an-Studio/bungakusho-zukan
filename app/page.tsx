@@ -20,6 +20,39 @@ export default function Home() {
         </header>
 
         <AwardResultList results={awardResults} />
+
+        <footer className="mt-12 border-t border-stone-200 pt-8 text-sm text-stone-600">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="font-bold text-stone-900">文学賞図鑑</p>
+              <p className="mt-2 leading-7">
+                受賞作から次に読む本を探すための個人制作サイトです。
+                <br />
+                データは公式サイト等を確認しながら掲載しています。
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3 font-bold">
+              <a
+                href="https://github.com/fel-an-Studio/bungakusho-zukan"
+                target="_blank"
+                rel="noreferrer"
+                className="underline underline-offset-4 hover:text-amber-700"
+              >
+                GitHub
+              </a>
+
+              <a
+                href="https://bungakusho-zukan.vercel.app"
+                target="_blank"
+                rel="noreferrer"
+                className="underline underline-offset-4 hover:text-amber-700"
+              >
+                公開サイト
+              </a>
+            </div>
+          </div>
+        </footer>
       </section>
     </main>
   );
