@@ -11,7 +11,7 @@ import {
   createWikipediaSearchUrl,
 } from "@/lib/book-links";
 
-type SortType = "author-asc" | "year-desc" | "year-asc" | "title-asc";
+type SortType = "year-desc" | "year-asc" | "author-asc" | "title-asc";
 
 type Props = {
   results: AwardResult[];
@@ -54,17 +54,14 @@ function isValidAwardName(value: string) {
 
 function isValidSortType(value: string): value is SortType {
   return (
-    value === "author-asc" ||
     value === "year-desc" ||
     value === "year-asc" ||
+    value === "author-asc" ||
     value === "title-asc"
   );
 }
 
 function getSortTypeLabel(sortType: SortType) {
-  if (sortType === "author-asc") {
-    return "作家名順";
-  }
 
   if (sortType === "year-desc") {
     return "受賞年 新しい順";
@@ -72,6 +69,10 @@ function getSortTypeLabel(sortType: SortType) {
 
   if (sortType === "year-asc") {
     return "受賞年 古い順";
+  }
+
+  if (sortType === "author-asc") {
+    return "作家名順";
   }
 
   return "作品名順";
@@ -266,9 +267,6 @@ export function AwardResultList({ results }: Props) {
     });
 
     return [...filtered].sort((a, b) => {
-      if (sortType === "author-asc") {
-        return a.authorName.localeCompare(b.authorName, "ja");
-      }
 
       if (sortType === "year-desc") {
         return b.awardYear - a.awardYear;
@@ -276,6 +274,10 @@ export function AwardResultList({ results }: Props) {
 
       if (sortType === "year-asc") {
         return a.awardYear - b.awardYear;
+      }
+
+      if (sortType === "author-asc") {
+        return a.authorName.localeCompare(b.authorName, "ja");
       }
 
       return a.workTitle.localeCompare(b.workTitle, "ja");
@@ -464,9 +466,9 @@ export function AwardResultList({ results }: Props) {
               onChange={(event) => setSortType(event.target.value as SortType)}
               className="rounded-xl border border-stone-300 bg-white px-4 py-3 text-sm outline-none focus:border-amber-600"
             >
-              <option value="author-asc">作家名順</option>
               <option value="year-desc">受賞年 新しい順</option>
               <option value="year-asc">受賞年 古い順</option>
+              <option value="author-asc">作家名順</option>
               <option value="title-asc">作品名順</option>
             </select>
           </label>
