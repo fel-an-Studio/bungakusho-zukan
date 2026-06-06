@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "文学賞図鑑",
+  title: "Culture Atlas",
   description:
-    "芥川賞・直木賞・本屋大賞などの受賞作を、作品名・作家名・受賞年から探せる読書案内サイトです。",
+    "文学賞を入口に、受賞作・作家・映像化作品・関連作品のつながりをたどる文化作品データベースです。",
   openGraph: {
-    title: "文学賞図鑑",
+    title: "Culture Atlas",
     description:
-      "芥川賞・直木賞・本屋大賞などの受賞作を、作品名・作家名・受賞年から探せる読書案内サイトです。",
-    siteName: "文学賞図鑑",
+      "文学賞を入口に、受賞作・作家・映像化作品・関連作品のつながりをたどる文化作品データベースです。",
+    siteName: "Culture Atlas",
     type: "website",
   },
 };

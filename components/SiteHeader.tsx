@@ -6,10 +6,10 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
         <Link href="/" className="group">
           <p className="text-xs font-bold tracking-[0.3em] text-amber-700">
-            BUNGAKUSHO ZUKAN
+            CULTURE ATLAS
           </p>
           <p className="mt-1 text-xl font-bold text-stone-900 group-hover:text-amber-700">
-            文学賞図鑑
+            Culture Atlas
           </p>
         </Link>
 
