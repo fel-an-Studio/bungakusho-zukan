@@ -1,9 +1,12 @@
 import { AwardResultList } from "@/components/AwardResultList";
+import { SiteHeader } from "@/components/SiteHeader";
 import { awardResults } from "@/data/award-results";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
+      <SiteHeader />
+
       <section className="mx-auto max-w-6xl px-6 py-12">
         <header>
           <p className="mb-3 text-sm font-bold tracking-[0.3em] text-amber-700">

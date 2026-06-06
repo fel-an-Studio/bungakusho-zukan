@@ -1,8 +1,11 @@
 import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
+      <SiteHeader />
+
       <section className="mx-auto max-w-4xl px-6 py-12">
         <Link
           href="/"
