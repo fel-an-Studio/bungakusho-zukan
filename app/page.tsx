@@ -19,6 +19,17 @@ export default function Home() {
           </p>
         </header>
 
+        <section className="mt-8 rounded-2xl border border-amber-100 bg-amber-50 p-5">
+          <h2 className="text-lg font-bold">データについて</h2>
+          <p className="mt-2 leading-7 text-stone-700">
+            掲載している受賞作データは、公式サイト等を確認しながら手入力しています。
+            各作品カードや詳細ページには、出典リンクと確認日を表示しています。
+          </p>
+          <p className="mt-2 text-sm text-stone-600">
+            現在は文学賞を中心に掲載しています。将来的には漫画・アニメ・映画・ゲームなどの受賞作にも広げる予定です。
+          </p>
+        </section>
+
         <AwardResultList results={awardResults} />
 
         <footer className="mt-12 border-t border-stone-200 pt-8 text-sm text-stone-600">
