@@ -45,6 +45,13 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-3 font-bold">
               <a
+                href="/about"
+                className="underline underline-offset-4 hover:text-amber-700"
+              >
+                このサイトについて
+              </a>
+
+              <a
                 href="https://github.com/fel-an-Studio/bungakusho-zukan"
                 target="_blank"
                 rel="noreferrer"
