@@ -9,7 +9,7 @@ export function SiteHeader() {
             CULTURE ATLAS
           </p>
           <p className="mt-1 text-xl font-bold text-stone-900 group-hover:text-amber-700">
-            Culture Atlas
+            読書回遊
           </p>
         </Link>
 

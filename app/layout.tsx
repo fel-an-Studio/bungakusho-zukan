@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Culture Atlas",
+  title: "読書回遊 | Culture Atlas",
   description:
-    "文学賞を入口に、受賞作・作家・映像化作品・関連作品のつながりをたどる文化作品データベースです。",
+    "文学賞を入口に、次に読みたい一冊へ。受賞作、候補作、同じ作家、似たテーマの作品をたどれる読書案内サイトです。",
   openGraph: {
-    title: "Culture Atlas",
+    title: "読書回遊 | Culture Atlas",
     description:
-      "文学賞を入口に、受賞作・作家・映像化作品・関連作品のつながりをたどる文化作品データベースです。",
-    siteName: "Culture Atlas",
+      "文学賞を入口に、次に読みたい一冊へ。受賞作、候補作、同じ作家、似たテーマの作品をたどれる読書案内サイトです。",
+    siteName: "読書回遊",
     type: "website",
   },
 };

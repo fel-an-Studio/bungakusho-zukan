@@ -14,26 +14,31 @@ export default function Home() {
           </p>
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            作品のつながりをたどる文化地図
+            読書回遊
           </h1>
 
-          <p className="mt-6 max-w-3xl leading-8 text-stone-700">
-            文学賞を入口に、受賞作・作家・映像化作品・関連作品のつながりをたどる文化作品データベースです。
+          <p className="mt-6 max-w-3xl text-2xl font-bold leading-10 text-stone-900">
+            文学賞を入口に、次に読みたい一冊へ。
           </p>
 
           <p className="mt-4 max-w-3xl leading-8 text-stone-700">
-            まずは芥川賞・直木賞・本屋大賞などの文学賞から、次に読む本や気になる作家を探せる「文学賞図鑑」として育てています。
+            受賞作、候補作、同じ作家、似たテーマの作品をたどれる読書案内サイトです。
+            まずは芥川賞・直木賞・本屋大賞などの受賞作から、次に読む本を探せる場所として育てています。
           </p>
         </header>
 
         <section className="mt-8 rounded-2xl border border-amber-100 bg-amber-50 p-5">
-          <h2 className="text-lg font-bold">現在の入口：文学賞図鑑</h2>
+          <h2 className="text-lg font-bold">
+            文学賞は、読書回遊の入口です
+          </h2>
+
           <p className="mt-2 leading-7 text-stone-700">
-            掲載している受賞作データは、公式サイト等を確認しながら手入力しています。
-            各作品カードや詳細ページには、出典リンクと確認日を表示しています。
+            このサイトは、文学賞の受賞作だけを並べるデータベースではありません。
+            文学賞を信頼できる入口として、そこから同じ作家の別作品、似たテーマの作品、関連する一冊へたどる体験を目指しています。
           </p>
+
           <p className="mt-2 text-sm text-stone-600">
-            将来的には、文学作品から映画化・アニメ化・漫画化・関連作品へたどれるようなデータベースに広げる予定です。
+            現在は受賞作データを中心に掲載しています。今後は候補作やおすすめ作品も少しずつ追加していく予定です。
           </p>
         </section>
 
@@ -42,11 +47,11 @@ export default function Home() {
         <footer className="mt-12 border-t border-stone-200 pt-8 text-sm text-stone-600">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <p className="font-bold text-stone-900">Culture Atlas</p>
+              <p className="font-bold text-stone-900">読書回遊</p>
               <p className="mt-2 leading-7">
-                文学賞を入口に、作品・作家・メディア展開のつながりをたどるための個人制作サイトです。
+                文学賞を入口に、次に読みたい一冊を探すための個人制作サイトです。
                 <br />
-                現在は文学賞データを中心に掲載しています。
+                現在は芥川賞・直木賞・本屋大賞の受賞作データを中心に掲載しています。
               </p>
             </div>
 
