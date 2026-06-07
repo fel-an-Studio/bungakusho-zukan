@@ -561,6 +561,13 @@ export function AwardResultList({ results }: Props) {
                           {result.awardYear}年
                           {result.round ? `・第${result.round}回` : ""}
                         </span>
+
+                        {result.readingRecommendations &&
+                          result.readingRecommendations.length > 0 && (
+                            <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-amber-700 ring-1 ring-amber-200">
+                              次に読む本あり
+                            </span>
+                          )}
                       </div>
 
                       <h3 className="mt-4 text-2xl font-bold">
