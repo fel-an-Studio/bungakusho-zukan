@@ -345,6 +345,27 @@ export const awardResults: AwardResult[] = [
     authorName: "リリー・フランキー",
     workTitle: "東京タワー",
     publisher: "扶桑社",
+    mediaExpansions: [
+      {
+        type: "movie",
+        typeLabel: "映画化",
+        title: "東京タワー オカンとボクと、時々、オトン",
+        year: 2007,
+        note: "松岡錠司監督、松竹配給",
+        url: "https://www.shochiku.co.jp/cinema/database/04657/",
+      },
+      {
+        type: "stage",
+        typeLabel: "舞台化",
+        title: "東京タワー オカンとボクと、時々、オトン",
+        year: 2007,
+        note: "キューブによる舞台公演",
+        url: "https://www.cubeinc.co.jp/archives/theater/tokyotower",
+      },
+    ],
+    relatedWorkNames: [
+      "東京タワー オカンとボクと、時々、オトン",
+    ],
     resultType: "winner",
     sourceName: "本屋大賞",
     sourceUrl: HONTAI_SOURCE_URL,
