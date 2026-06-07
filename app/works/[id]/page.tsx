@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { SiteHeader } from "@/components/SiteHeader";
 import { awardResults } from "@/data/award-results";
 import {
   createAmazonSearchUrl,
@@ -44,8 +45,13 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
   const libraryUrl = createLibrarySearchUrl(result.workTitle, result.authorName);
   const wikipediaUrl = createWikipediaSearchUrl(result.authorName);
 
+  const mediaExpansions = result.mediaExpansions ?? [];
+  const relatedWorkNames = result.relatedWorkNames ?? [];
+
   return (
     <main className="min-h-screen bg-stone-50 text-stone-900">
+      <SiteHeader />
+
       <section className="mx-auto max-w-5xl px-6 py-12">
         <Link
           href={backUrl}
@@ -148,6 +154,84 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
                   </dd>
                 </div>
               </dl>
+
+              <section className="mt-8 rounded-2xl border border-amber-100 bg-amber-50 p-5">
+                <h2 className="text-lg font-bold">この作品の広がり</h2>
+                <p className="mt-2 text-sm leading-7 text-stone-700">
+                  映画化・アニメ化・漫画化・関連作品など、この作品から広がる情報を今後追加していきます。
+                </p>
+
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-2xl bg-white p-4">
+                    <p className="text-sm font-bold text-stone-500">
+                      メディア展開
+                    </p>
+
+                    {mediaExpansions.length > 0 ? (
+                      <ul className="mt-3 space-y-3">
+                        {mediaExpansions.map((mediaExpansion) => (
+                          <li
+                            key={`${mediaExpansion.type}-${mediaExpansion.title}`}
+                            className="text-sm leading-6 text-stone-700"
+                          >
+                            <span className="font-bold text-stone-900">
+                              {mediaExpansion.typeLabel}
+                            </span>
+                            ：
+                            {mediaExpansion.url ? (
+                              <a
+                                href={mediaExpansion.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="font-bold underline underline-offset-4 hover:text-amber-700"
+                              >
+                                {mediaExpansion.title}
+                              </a>
+                            ) : (
+                              <span className="font-bold">
+                                {mediaExpansion.title}
+                              </span>
+                            )}
+                            {mediaExpansion.year
+                              ? `（${mediaExpansion.year}年）`
+                              : ""}
+                            {mediaExpansion.note
+                              ? ` / ${mediaExpansion.note}`
+                              : ""}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="mt-3 text-sm font-bold text-stone-500">
+                        未登録
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="rounded-2xl bg-white p-4">
+                    <p className="text-sm font-bold text-stone-500">
+                      関連作品
+                    </p>
+
+                    {relatedWorkNames.length > 0 ? (
+                      <ul className="mt-3 space-y-2">
+                        {relatedWorkNames.map((relatedWorkName) => (
+                          <li
+                            key={relatedWorkName}
+                            className="text-sm font-bold text-stone-700"
+                          >
+                            {relatedWorkName}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="mt-3 text-sm font-bold text-stone-500">
+                        未登録
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </section>
 
               <section className="mt-8 rounded-2xl bg-stone-50 p-5">
                 <h2 className="text-lg font-bold">この作品を探す</h2>

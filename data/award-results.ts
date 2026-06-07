@@ -12,6 +12,15 @@ export type AwardCategoryLabel =
   | "映画"
   | "ゲーム";
 
+export type MediaExpansion = {
+  type: "movie" | "anime" | "manga" | "drama" | "stage" | "other";
+  typeLabel: "映画化" | "アニメ化" | "漫画化" | "ドラマ化" | "舞台化" | "その他";
+  title: string;
+  year?: number;
+  note?: string;
+  url?: string;
+};
+
 export type AwardResult = {
   id: string;
   category: AwardCategory;
@@ -24,6 +33,8 @@ export type AwardResult = {
   publisher?: string;
   isbn?: string;
   coverImageUrl?: string;
+  mediaExpansions?: MediaExpansion[];
+  relatedWorkNames?: string[];
   resultType: "winner" | "nominee";
   sourceName?: string;
   sourceUrl?: string;
