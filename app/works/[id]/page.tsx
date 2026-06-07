@@ -45,6 +45,7 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
   const libraryUrl = createLibrarySearchUrl(result.workTitle, result.authorName);
   const wikipediaUrl = createWikipediaSearchUrl(result.authorName);
 
+  const readingRecommendations = result.readingRecommendations ?? [];
   const mediaExpansions = result.mediaExpansions ?? [];
   const relatedWorkNames = result.relatedWorkNames ?? [];
 
@@ -156,82 +157,132 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
               </dl>
 
               <section className="mt-8 rounded-2xl border border-amber-100 bg-amber-50 p-5">
-                <h2 className="text-lg font-bold">この作品の広がり</h2>
+                <h2 className="text-lg font-bold">
+                  この作品が気になった人へ
+                </h2>
                 <p className="mt-2 text-sm leading-7 text-stone-700">
-                  映画化・アニメ化・漫画化・関連作品など、この作品から広がる情報を今後追加していきます。
+                  同じ作家、近いテーマ、読後感、賞とのつながりから、次に読みたい一冊を探せるようにしていきます。
                 </p>
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-2xl bg-white p-4">
-                    <p className="text-sm font-bold text-stone-500">
-                      メディア展開
-                    </p>
+                {readingRecommendations.length > 0 ? (
+                  <div className="mt-5 grid gap-3">
+                    {readingRecommendations.map((recommendation) => {
+                      const recommendationAmazonUrl = createAmazonSearchUrl(
+                        recommendation.workTitle,
+                        recommendation.authorName
+                      );
 
-                    {mediaExpansions.length > 0 ? (
-                      <ul className="mt-3 space-y-3">
-                        {mediaExpansions.map((mediaExpansion) => (
-                          <li
-                            key={`${mediaExpansion.type}-${mediaExpansion.title}`}
-                            className="text-sm leading-6 text-stone-700"
-                          >
-                            <span className="font-bold text-stone-900">
-                              {mediaExpansion.typeLabel}
-                            </span>
-                            ：
-                            {mediaExpansion.url ? (
-                              <a
-                                href={mediaExpansion.url}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="font-bold underline underline-offset-4 hover:text-amber-700"
-                              >
-                                {mediaExpansion.title}
-                              </a>
-                            ) : (
-                              <span className="font-bold">
-                                {mediaExpansion.title}
-                              </span>
-                            )}
-                            {mediaExpansion.year
-                              ? `（${mediaExpansion.year}年）`
-                              : ""}
-                            {mediaExpansion.note
-                              ? ` / ${mediaExpansion.note}`
-                              : ""}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="mt-3 text-sm font-bold text-stone-500">
-                        未登録
-                      </p>
-                    )}
+                      return (
+                        <article
+                          key={`${recommendation.label}-${recommendation.workTitle}`}
+                          className="rounded-2xl bg-white p-4"
+                        >
+                          <p className="text-sm font-bold text-amber-700">
+                            {recommendation.label}
+                          </p>
+
+                          <h3 className="mt-2 text-lg font-bold">
+                            <a
+                              href={recommendationAmazonUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="underline decoration-amber-500 underline-offset-4 hover:text-amber-700"
+                            >
+                              {recommendation.workTitle}
+                            </a>
+                          </h3>
+
+                          <p className="mt-1 text-sm font-bold text-stone-700">
+                            {recommendation.authorName}
+                          </p>
+
+                          <p className="mt-3 text-sm leading-7 text-stone-600">
+                            {recommendation.reason}
+                          </p>
+                        </article>
+                      );
+                    })}
                   </div>
-
-                  <div className="rounded-2xl bg-white p-4">
+                ) : (
+                  <div className="mt-5 rounded-2xl bg-white p-4">
                     <p className="text-sm font-bold text-stone-500">
-                      関連作品
+                      おすすめ作品はまだ未登録です。
                     </p>
-
-                    {relatedWorkNames.length > 0 ? (
-                      <ul className="mt-3 space-y-2">
-                        {relatedWorkNames.map((relatedWorkName) => (
-                          <li
-                            key={relatedWorkName}
-                            className="text-sm font-bold text-stone-700"
-                          >
-                            {relatedWorkName}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="mt-3 text-sm font-bold text-stone-500">
-                        未登録
-                      </p>
-                    )}
+                    <p className="mt-2 text-sm leading-7 text-stone-600">
+                      今後、同じ作家の別作品、似たテーマの作品、同じ賞で注目された作品などを追加していきます。
+                    </p>
                   </div>
-                </div>
+                )}
               </section>
+
+              {(mediaExpansions.length > 0 || relatedWorkNames.length > 0) && (
+                <section className="mt-8 rounded-2xl bg-stone-50 p-5">
+                  <h2 className="text-lg font-bold">関連情報</h2>
+
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                    {mediaExpansions.length > 0 && (
+                      <div className="rounded-2xl bg-white p-4">
+                        <p className="text-sm font-bold text-stone-500">
+                          メディア展開
+                        </p>
+
+                        <ul className="mt-3 space-y-3">
+                          {mediaExpansions.map((mediaExpansion) => (
+                            <li
+                              key={`${mediaExpansion.type}-${mediaExpansion.title}`}
+                              className="text-sm leading-6 text-stone-700"
+                            >
+                              <span className="font-bold text-stone-900">
+                                {mediaExpansion.typeLabel}
+                              </span>
+                              ：
+                              {mediaExpansion.url ? (
+                                <a
+                                  href={mediaExpansion.url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="font-bold underline underline-offset-4 hover:text-amber-700"
+                                >
+                                  {mediaExpansion.title}
+                                </a>
+                              ) : (
+                                <span className="font-bold">
+                                  {mediaExpansion.title}
+                                </span>
+                              )}
+                              {mediaExpansion.year
+                                ? `（${mediaExpansion.year}年）`
+                                : ""}
+                              {mediaExpansion.note
+                                ? ` / ${mediaExpansion.note}`
+                                : ""}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {relatedWorkNames.length > 0 && (
+                      <div className="rounded-2xl bg-white p-4">
+                        <p className="text-sm font-bold text-stone-500">
+                          関連作品
+                        </p>
+
+                        <ul className="mt-3 space-y-2">
+                          {relatedWorkNames.map((relatedWorkName) => (
+                            <li
+                              key={relatedWorkName}
+                              className="text-sm font-bold text-stone-700"
+                            >
+                              {relatedWorkName}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </section>
+              )}
 
               <section className="mt-8 rounded-2xl bg-stone-50 p-5">
                 <h2 className="text-lg font-bold">この作品を探す</h2>

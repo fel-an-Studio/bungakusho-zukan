@@ -12,6 +12,13 @@ export type AwardCategoryLabel =
   | "映画"
   | "ゲーム";
 
+export type ReadingRecommendation = {
+  label: string;
+  workTitle: string;
+  authorName: string;
+  reason: string;
+};
+
 export type MediaExpansion = {
   type: "movie" | "anime" | "manga" | "drama" | "stage" | "other";
   typeLabel: "映画化" | "アニメ化" | "漫画化" | "ドラマ化" | "舞台化" | "その他";
@@ -33,6 +40,7 @@ export type AwardResult = {
   publisher?: string;
   isbn?: string;
   coverImageUrl?: string;
+  readingRecommendations?: ReadingRecommendation[];
   mediaExpansions?: MediaExpansion[];
   relatedWorkNames?: string[];
   resultType: "winner" | "nominee";
@@ -492,6 +500,32 @@ export const awardResults: AwardResult[] = [
     authorName: "宮島未奈",
     workTitle: "成瀬は天下を取りにいく",
     publisher: "新潮社",
+    readingRecommendations: [
+      {
+        label: "同じ本屋大賞で注目",
+        workTitle: "水車小屋のネネ",
+        authorName: "津村記久子",
+        reason: "本屋大賞で注目された作品から、あたたかい人間関係を味わえる一冊へ。",
+      },
+      {
+        label: "同じく青春の空気感",
+        workTitle: "夜のピクニック",
+        authorName: "恩田陸",
+        reason: "学生時代の特別な時間や、まっすぐな青春の空気を楽しみたい人に。",
+      },
+      {
+        label: "明るい読後感で読みやすい",
+        workTitle: "阪急電車",
+        authorName: "有川浩",
+        reason: "軽やかで読みやすく、読後に前向きな気持ちが残る作品として。",
+      },
+      {
+        label: "同じ著者の次の一冊",
+        workTitle: "成瀬は信じた道をいく",
+        authorName: "宮島未奈",
+        reason: "成瀬の物語をもっと読みたい人に向けた続編的な一冊。",
+      },
+    ],
     resultType: "winner",
     sourceName: "本屋大賞",
     sourceUrl: HONTAI_SOURCE_URL,
