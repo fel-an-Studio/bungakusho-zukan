@@ -83,7 +83,7 @@ export function AwardResultList({ results }: Props) {
   const [category, setCategory] = useState<CategoryFilter>("all");
   const [awardName, setAwardName] = useState("all");
   const [awardYear, setAwardYear] = useState("all");
-  const [sortType, setSortType] = useState<SortType>("author-asc");
+  const [sortType, setSortType] = useState<SortType>("year-desc");
   const [hasLoadedUrlParams, setHasLoadedUrlParams] = useState(false);
 
   const awardCount = new Set(results.map((result) => result.awardName)).size;
@@ -169,7 +169,7 @@ export function AwardResultList({ results }: Props) {
       searchParams.set("year", awardYear);
     }
 
-    if (sortType !== "author-asc") {
+    if (sortType !== "year-desc") {
       searchParams.set("sort", sortType);
     }
 
@@ -185,7 +185,7 @@ export function AwardResultList({ results }: Props) {
     const urlCategory = searchParams.get("category") ?? "all";
     const urlAwardName = searchParams.get("award") ?? "all";
     const urlAwardYear = searchParams.get("year") ?? "all";
-    const urlSortType = searchParams.get("sort") ?? "author-asc";
+    const urlSortType = searchParams.get("sort") ?? "year-desc";
 
     setKeyword(urlKeyword);
 
@@ -234,7 +234,7 @@ export function AwardResultList({ results }: Props) {
       searchParams.set("year", awardYear);
     }
 
-    if (sortType !== "author-asc") {
+    if (sortType !== "year-desc") {
       searchParams.set("sort", sortType);
     }
 
@@ -289,7 +289,7 @@ export function AwardResultList({ results }: Props) {
     setCategory("all");
     setAwardName("all");
     setAwardYear("all");
-    setSortType("author-asc");
+    setSortType("year-desc");
   }
 
   return (
