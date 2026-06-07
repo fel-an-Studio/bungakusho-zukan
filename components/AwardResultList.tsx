@@ -90,18 +90,6 @@ export function AwardResultList({ results }: Props) {
   const authorCount = new Set(results.map((result) => result.authorName)).size;
   const latestYear = Math.max(...results.map((result) => result.awardYear));
 
-  const categorySummaries = categories.map((summaryCategory) => {
-    const count = results.filter(
-      (result) => result.category === summaryCategory.category
-    ).length;
-
-    return {
-      category: summaryCategory.category,
-      label: summaryCategory.label,
-      count,
-    };
-  });
-
   const awardSummaries = awardNames.map((summaryAwardName) => {
     const count = results.filter(
       (result) => result.awardName === summaryAwardName
@@ -325,44 +313,6 @@ export function AwardResultList({ results }: Props) {
             {latestYear}
             <span className="ml-1 text-base">年</span>
           </p>
-        </div>
-      </section>
-
-      <section className="mt-4 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <h2 className="text-lg font-bold">対象ジャンル</h2>
-            <p className="mt-1 text-sm text-stone-600">
-              将来的に、文学・漫画・アニメ・映画・ゲームへ広げる予定です。
-            </p>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-5">
-            {categorySummaries.map((summary) => {
-              const isSelected = category === summary.category;
-
-              return (
-                <button
-                  key={summary.category}
-                  type="button"
-                  onClick={() => setCategory(summary.category)}
-                  className={`rounded-xl px-4 py-3 text-left transition ${
-                    isSelected
-                      ? "bg-amber-100 ring-2 ring-amber-600"
-                      : "bg-stone-50 hover:bg-amber-50"
-                  }`}
-                >
-                  <p className="text-sm font-bold text-stone-700">
-                    {summary.label}
-                  </p>
-                  <p className="mt-1 text-2xl font-bold text-amber-700">
-                    {summary.count}
-                    <span className="ml-1 text-sm text-stone-600">件</span>
-                  </p>
-                </button>
-              );
-            })}
-          </div>
         </div>
       </section>
 
