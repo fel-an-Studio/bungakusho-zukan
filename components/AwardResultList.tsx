@@ -292,7 +292,7 @@ export function AwardResultList({ results }: Props) {
         </div>
 
         <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
-          <p className="text-sm font-bold text-stone-500">対象文学賞</p>
+          <p className="text-sm font-bold text-stone-500">入口にしている賞</p>
           <p className="mt-2 text-3xl font-bold text-stone-900">
             {awardCount}
             <span className="ml-1 text-base">賞</span>
