@@ -340,6 +340,26 @@ export const awardResults: AwardResult[] = [
     workTitle: "夜のピクニック",
     publisher: "新潮社",
     resultType: "winner",
+    readingRecommendations: [
+      {
+        label: "同じ著者の青春小説",
+        workTitle: "六番目の小夜子",
+        authorName: "恩田陸",
+        reason: "学校という閉じた空間の中で、特別な時間が少しずつ立ち上がっていく雰囲気を楽しみたい人に。",
+      },
+      {
+        label: "同じく青春の空気感",
+        workTitle: "一瞬の風になれ",
+        authorName: "佐藤多佳子",
+        reason: "部活動や仲間との時間を通して、青春のまぶしさやまっすぐさを味わいたい人に。",
+      },
+      {
+        label: "少し不思議な読後感",
+        workTitle: "きのうの世界",
+        authorName: "恩田陸",
+        reason: "恩田陸作品らしい、日常の中に少し不穏さや謎が混ざる読書体験へ進みたい人に。",
+      },
+    ],
     sourceName: "本屋大賞",
     sourceUrl: HONTAI_SOURCE_URL,
     verifiedAt: "2026-06-05",
