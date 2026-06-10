@@ -136,8 +136,12 @@ export function AwardResultList({ results }: Props) {
 
     conditions.push(getSortTypeLabel(sortType));
 
+    if (hasRecommendationsOnly) {
+      conditions.push("次に読みたい一冊あり");
+    }
+
     return conditions;
-  }, [awardName, awardYear, category, keyword, sortType]);
+  }, [awardName, awardYear, category, keyword, sortType, hasRecommendationsOnly,]);
 
   const currentListUrl = useMemo(() => {
     const searchParams = new URLSearchParams();
