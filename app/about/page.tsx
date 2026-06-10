@@ -20,30 +20,39 @@ export default function AboutPage() {
           </p>
 
           <h1 className="text-4xl font-bold tracking-tight">
-            Culture Atlas について
+            読書回遊について
           </h1>
 
           <section className="mt-8 border-t border-stone-200 pt-8">
-            <h2 className="text-2xl font-bold">Culture Atlas とは</h2>
+            <h2 className="text-2xl font-bold">読書回遊とは</h2>
             <p className="mt-4 leading-8 text-stone-700">
-              Culture Atlas は、作品・作家・賞・メディア展開・関連作品のつながりをたどるための文化作品データベースです。
+              読書回遊は、文学賞を入口にして、次に読みたい一冊を見つけるための読書案内サイトです。
             </p>
             <p className="mt-4 leading-8 text-stone-700">
-              最初の入口として、芥川賞・直木賞・本屋大賞などの文学賞受賞作を掲載しています。
-              受賞作をきっかけに、気になる作家や次に読む本を探せるサイトを目指しています。
+              文学賞の受賞作だけを並べるのではなく、受賞作、候補作、同じ作家の別作品、似たテーマや読後感の作品をたどれる場所を目指しています。
             </p>
           </section>
 
           <section className="mt-8 border-t border-stone-200 pt-8">
-            <h2 className="text-2xl font-bold">現在の入口：文学賞図鑑</h2>
+            <h2 className="text-2xl font-bold">文学賞は入口です</h2>
             <p className="mt-4 leading-8 text-stone-700">
-              現在は、文学賞を中心に受賞作データを掲載しています。
-              作品名・作家名・受賞年・文学賞から探せるほか、作品詳細ページでは出典や作品検索リンクも確認できます。
+              芥川賞・直木賞・本屋大賞などの文学賞は、信頼できる読書の入口として使います。
             </p>
             <p className="mt-4 leading-8 text-stone-700">
-              作品ページからは、Amazon・メルカリ・楽天ブックス・図書館検索などへ移動できます。
-              作家名からは Wikipedia 検索にも移動できます。
+              そこから、気になった作品、同じ作家、近いテーマ、明るい読後感、少し重たい読後感など、自分の読みたい方向へ回遊できるサイトに育てていきます。
             </p>
+          </section>
+
+          <section className="mt-8 border-t border-stone-200 pt-8">
+            <h2 className="text-2xl font-bold">現在できること</h2>
+            <ul className="mt-4 list-disc space-y-2 pl-6 leading-7 text-stone-700">
+              <li>文学賞の受賞作を探す</li>
+              <li>作品名・作家名・出版社で検索する</li>
+              <li>文学賞や受賞年で絞り込む</li>
+              <li>作品詳細ページで出典や確認日を見る</li>
+              <li>Amazon・メルカリ・楽天ブックス・図書館検索で作品を探す</li>
+              <li>一部の作品で「この作品が気になった人へ」の読書案内を見る</li>
+            </ul>
           </section>
 
           <section className="mt-8 border-t border-stone-200 pt-8">
@@ -53,13 +62,16 @@ export default function AboutPage() {
               各作品カードや詳細ページには、出典リンクと確認日を表示しています。
             </p>
             <p className="mt-4 leading-8 text-stone-700">
+              一部のおすすめ作品は、公式な受賞情報ではなく、作品テーマや読書体験をもとに個人で整理した読書案内です。
+            </p>
+            <p className="mt-4 leading-8 text-stone-700">
               できるだけ正確な情報を掲載するようにしていますが、表記ゆれ、出版社名の変更、受賞年と対象年度の違いなどがある場合があります。
               最新情報や詳細は、各賞の公式サイト・出版社・販売サイト等をご確認ください。
             </p>
           </section>
 
           <section className="mt-8 border-t border-stone-200 pt-8">
-            <h2 className="text-2xl font-bold">現在の対象賞</h2>
+            <h2 className="text-2xl font-bold">現在の入口にしている賞</h2>
             <ul className="mt-4 list-disc space-y-2 pl-6 leading-7 text-stone-700">
               <li>芥川賞</li>
               <li>直木賞</li>
@@ -71,11 +83,11 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold">今後の予定</h2>
             <ul className="mt-4 list-disc space-y-2 pl-6 leading-7 text-stone-700">
               <li>文学賞データの追加</li>
+              <li>候補作・ノミネート作の追加</li>
+              <li>同じ作家の次の一冊を追加</li>
+              <li>似たテーマ・読後感の作品を追加</li>
+              <li>作品詳細ページの読書案内を拡充</li>
               <li>ISBN・表紙画像の追加</li>
-              <li>作家別ページ・賞別ページの作成</li>
-              <li>作品同士の関連表示</li>
-              <li>映画化・アニメ化・漫画化などのメディア展開データの追加</li>
-              <li>漫画・アニメ・映画・ゲームなどの受賞作への拡張</li>
               <li>CSVやスプレッドシートによるデータ管理</li>
             </ul>
           </section>
@@ -83,10 +95,10 @@ export default function AboutPage() {
           <section className="mt-8 border-t border-stone-200 pt-8">
             <h2 className="text-2xl font-bold">やらないこと</h2>
             <p className="mt-4 leading-8 text-stone-700">
-              Culture Atlas は、すべての賞や作品を網羅することだけを目的にしたサイトではありません。
+              読書回遊は、すべての文学賞や作品を網羅することだけを目的にしたサイトではありません。
             </p>
             <p className="mt-4 leading-8 text-stone-700">
-              作品を起点に、「この作品はその後どう広がったのか」「この作家は他に何を生み出したのか」を見つけられる体験を重視します。
+              中心にしたいのは「賞の一覧」ではなく、気になった一冊から次の一冊へ進める読書体験です。
             </p>
           </section>
 
@@ -106,7 +118,7 @@ export default function AboutPage() {
           <section className="mt-8 border-t border-stone-200 pt-8">
             <h2 className="text-2xl font-bold">免責事項</h2>
             <p className="mt-4 leading-8 text-stone-700">
-              本サイトは個人制作の文化作品データベースです。
+              本サイトは個人制作の読書案内サイトです。
               掲載情報の正確性には注意していますが、最新情報や詳細は各賞の公式サイト・出版社・販売サイト等をご確認ください。
             </p>
           </section>

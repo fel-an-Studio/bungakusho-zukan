@@ -357,9 +357,9 @@ export function AwardResultList({ results }: Props) {
       <section className="mt-10 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col gap-2 border-b border-stone-200 pb-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-2xl font-bold">受賞作一覧</h2>
+            <h2 className="text-2xl font-bold">作品を探す</h2>
             <p className="mt-2 text-sm text-stone-600">
-              作品名・作家名・出版社・受賞年で探せます。
+              文学賞を入口に、作品名・作家名・出版社・受賞年から次に読みたい本を探せます。
             </p>
           </div>
 
