@@ -596,7 +596,7 @@ export function AwardResultList({ results }: Props) {
                           出版社：{result.publisher}
                         </p>
                       )}
-                      
+
                       {result.summary && (
                           <p className="mt-3 line-clamp-2 text-sm leading-6 text-stone-700">
                             {result.summary}
@@ -626,12 +626,12 @@ export function AwardResultList({ results }: Props) {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 lg:justify-end">
+                  <div className="grid w-64 shrink-0 grid-cols-2 gap-2 self-start">
                     <a
                       href={amazonUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-bold hover:border-amber-600 hover:text-amber-700"
+                      className="rounded-full border border-stone-300 bg-white px-4 py-2 text-center font-bold whitespace-nowrap hover:border-amber-600 hover:text-amber-700"
                     >
                       Amazon
                     </a>
@@ -640,7 +640,7 @@ export function AwardResultList({ results }: Props) {
                       href={mercariUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-bold hover:border-amber-600 hover:text-amber-700"
+                      className="rounded-full border border-stone-300 bg-white px-4 py-2 text-center font-bold whitespace-nowrap hover:border-amber-600 hover:text-amber-700"
                     >
                       メルカリ
                     </a>
@@ -649,7 +649,7 @@ export function AwardResultList({ results }: Props) {
                       href={rakutenUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-bold hover:border-amber-600 hover:text-amber-700"
+                      className="rounded-full border border-stone-300 bg-white px-4 py-2 text-center font-bold whitespace-nowrap hover:border-amber-600 hover:text-amber-700"
                     >
                       楽天ブックス
                     </a>
@@ -658,7 +658,7 @@ export function AwardResultList({ results }: Props) {
                       href={libraryUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-bold hover:border-amber-600 hover:text-amber-700"
+                      className="rounded-full border border-stone-300 bg-white px-4 py-2 text-center font-bold whitespace-nowrap hover:border-amber-600 hover:text-amber-700"
                     >
                       図書館
                     </a>
