@@ -29,16 +29,16 @@ export default function Home() {
 
         <section className="mt-8 rounded-2xl border border-amber-100 bg-amber-50 p-5">
           <h2 className="text-lg font-bold">
-            文学賞は、読書回遊の入口です
+            文学賞は、次の一冊への入口です
           </h2>
 
           <p className="mt-2 leading-7 text-stone-700">
-            このサイトは、文学賞の受賞作だけを並べるデータベースではありません。
-            文学賞を信頼できる入口として、そこから同じ作家の別作品、似たテーマの作品、関連する一冊へたどる体験を目指しています。
+            気になる受賞作から、同じ作家の別作品や、似たテーマ・読後感の本へ。
+            文学賞をきっかけに、次に読みたい一冊を探せる場所を目指しています。
           </p>
 
           <p className="mt-2 text-sm text-stone-600">
-            現在は受賞作データを中心に掲載しています。今後は候補作やおすすめ作品も少しずつ追加していく予定です。
+            現在は受賞作データを中心に掲載しています。今後は候補作や読書案内も少しずつ追加していきます。
           </p>
         </section>
 

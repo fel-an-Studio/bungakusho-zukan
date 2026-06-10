@@ -285,7 +285,7 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
               )}
 
               <section className="mt-8 rounded-2xl bg-stone-50 p-5">
-                <h2 className="text-lg font-bold">この作品を探す</h2>
+                <h2 className="text-lg font-bold">この本を探す</h2>
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   <a
