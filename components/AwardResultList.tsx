@@ -84,6 +84,7 @@ export function AwardResultList({ results }: Props) {
   const [awardName, setAwardName] = useState("all");
   const [awardYear, setAwardYear] = useState("all");
   const [sortType, setSortType] = useState<SortType>("year-desc");
+  const [hasRecommendationsOnly, setHasRecommendationsOnly] = useState(false);
   const [hasLoadedUrlParams, setHasLoadedUrlParams] = useState(false);
 
   const awardCount = new Set(results.map((result) => result.awardName)).size;
@@ -160,6 +161,7 @@ export function AwardResultList({ results }: Props) {
     if (sortType !== "year-desc") {
       searchParams.set("sort", sortType);
     }
+    
 
     const queryString = searchParams.toString();
 
@@ -174,6 +176,8 @@ export function AwardResultList({ results }: Props) {
     const urlAwardName = searchParams.get("award") ?? "all";
     const urlAwardYear = searchParams.get("year") ?? "all";
     const urlSortType = searchParams.get("sort") ?? "year-desc";
+    const urlHasRecommendationsOnly =
+      searchParams.get("recommendations") === "true";
 
     setKeyword(urlKeyword);
 
@@ -194,6 +198,7 @@ export function AwardResultList({ results }: Props) {
 
     if (isValidSortType(urlSortType)) {
       setSortType(urlSortType);
+        setHasRecommendationsOnly(urlHasRecommendationsOnly);
     }
 
     setHasLoadedUrlParams(true);
@@ -226,16 +231,27 @@ export function AwardResultList({ results }: Props) {
       searchParams.set("sort", sortType);
     }
 
+    if (hasRecommendationsOnly) {
+      searchParams.set("recommendations", "true");
+    }
+
     const queryString = searchParams.toString();
     const newUrl = queryString ? `?${queryString}` : window.location.pathname;
 
     window.history.replaceState(null, "", newUrl);
-  }, [awardName, awardYear, category, hasLoadedUrlParams, keyword, sortType]);
+  }, [awardName, awardYear, category, hasLoadedUrlParams, keyword, sortType, hasRecommendationsOnly]);
 
   const filteredResults = useMemo(() => {
     const normalizedKeyword = keyword.trim().toLowerCase();
 
     const filtered = results.filter((result) => {
+      if (
+        hasRecommendationsOnly &&
+        (!result.readingRecommendations ||
+          result.readingRecommendations.length === 0)
+      ) {
+        return false;
+      }
       const matchesKeyword =
         normalizedKeyword === "" ||
         result.authorName.toLowerCase().includes(normalizedKeyword) ||
@@ -270,7 +286,7 @@ export function AwardResultList({ results }: Props) {
 
       return a.workTitle.localeCompare(b.workTitle, "ja");
     });
-  }, [awardName, awardYear, category, keyword, results, sortType]);
+  }, [awardName, awardYear, category, keyword, results, sortType, hasRecommendationsOnly,]);
 
   function resetFilters() {
     setKeyword("");
@@ -278,6 +294,7 @@ export function AwardResultList({ results }: Props) {
     setAwardName("all");
     setAwardYear("all");
     setSortType("year-desc");
+    setHasRecommendationsOnly(false);
   }
 
   return (
@@ -423,7 +440,20 @@ export function AwardResultList({ results }: Props) {
             </select>
           </label>
 
-          <div className="flex items-end">
+          <div className="flex items-end gap-3">
+
+            <button
+              type="button"
+              onClick={() => setHasRecommendationsOnly(!hasRecommendationsOnly)}
+              className={`rounded-full px-4 py-2 text-sm font-bold transition ${
+                hasRecommendationsOnly
+                  ? "bg-amber-600 text-white"
+                  : "bg-white text-amber-700 ring-1 ring-amber-200 hover:bg-amber-50"
+              }`}
+            >
+              次に読みたい一冊あり
+            </button>
+
             <button
               type="button"
               onClick={resetFilters}
