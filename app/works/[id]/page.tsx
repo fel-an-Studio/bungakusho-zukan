@@ -158,10 +158,10 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
 
               <section className="mt-8 rounded-2xl border border-amber-100 bg-amber-50 p-5">
                 <h2 className="text-lg font-bold">
-                  この作品が気になった人へ
+                  次に読みたい一冊
                 </h2>
                 <p className="mt-2 text-sm leading-7 text-stone-700">
-                  同じ作家、近いテーマ、読後感、賞とのつながりから、次に読みたい一冊を探せるようにしていきます。
+                  この作品が気になった人に向けて、次に読みたい本を紹介します。
                 </p>
 
                 {readingRecommendations.length > 0 ? (
