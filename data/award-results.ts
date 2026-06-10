@@ -39,6 +39,7 @@ export type AwardResult = {
   workTitle: string;
   publisher?: string;
   isbn?: string;
+  summary?: string;
   coverImageUrl?: string;
   readingRecommendations?: ReadingRecommendation[];
   mediaExpansions?: MediaExpansion[];
@@ -540,6 +541,8 @@ export const awardResults: AwardResult[] = [
     authorName: "宮島未奈",
     workTitle: "成瀬は天下を取りにいく",
     publisher: "新潮社",
+    summary:
+        "滋賀県大津市に暮らす中学生・成瀬あかりが、閉店する百貨店に通ったり、漫才に挑戦したりしながら、自分の信じた道をまっすぐ進んでいく青春小説です。",
     readingRecommendations: [
       {
         label: "同じ本屋大賞で注目",

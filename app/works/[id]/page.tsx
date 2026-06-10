@@ -156,6 +156,13 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
                 </div>
               </dl>
 
+              {result.summary && (
+                <section className="mt-8 rounded-2xl border border-stone-200 bg-white p-5">
+                  <h2 className="text-2xl font-bold">どんな本？</h2>
+                  <p className="mt-3 leading-8 text-stone-700">{result.summary}</p>
+                </section>
+              )}
+
               <section className="mt-8 rounded-2xl border border-amber-100 bg-amber-50 p-5">
                 <h2 className="text-lg font-bold">
                   次に読みたい一冊

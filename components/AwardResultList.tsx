@@ -596,6 +596,12 @@ export function AwardResultList({ results }: Props) {
                           出版社：{result.publisher}
                         </p>
                       )}
+                      
+                      {result.summary && (
+                          <p className="mt-3 line-clamp-2 text-sm leading-6 text-stone-700">
+                            {result.summary}
+                          </p>
+                      )}
 
                       {result.sourceName && (
                         <p className="mt-3 text-xs text-stone-500">
