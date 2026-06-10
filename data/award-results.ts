@@ -340,6 +340,8 @@ export const awardResults: AwardResult[] = [
     authorName: "恩田陸",
     workTitle: "夜のピクニック",
     publisher: "新潮社",
+    summary:
+      "高校生活最後の行事「歩行祭」で、夜を徹して歩き続ける生徒たちを描く青春小説です。特別な一日を通して、友人関係や言えなかった思いが少しずつ動き出します。",
     resultType: "winner",
     readingRecommendations: [
       {
@@ -395,6 +397,8 @@ export const awardResults: AwardResult[] = [
     relatedWorkNames: [
       "東京タワー オカンとボクと、時々、オトン",
     ],
+    summary:
+      "母との思い出や家族との時間を、ユーモアと切なさを交えて描く自伝的な小説です。親子の関係や、かけがえのない人との別れについて静かに考えたくなる一冊です。",
     resultType: "winner",
     readingRecommendations: [
       {
