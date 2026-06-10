@@ -91,6 +91,12 @@ export function AwardResultList({ results }: Props) {
   const authorCount = new Set(results.map((result) => result.authorName)).size;
   const latestYear = Math.max(...results.map((result) => result.awardYear));
 
+  const recommendationCount = results.filter(
+    (result) =>
+      result.readingRecommendations &&
+      result.readingRecommendations.length > 0
+  ).length;
+
   const awardSummaries = awardNames.map((summaryAwardName) => {
     const count = results.filter(
       (result) => result.awardName === summaryAwardName
@@ -303,7 +309,7 @@ export function AwardResultList({ results }: Props) {
 
   return (
     <>
-      <section className="mt-10 grid gap-4 md:grid-cols-4">
+      <section className="mt-10 grid gap-4 md:grid-cols-5">
         <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
           <p className="text-sm font-bold text-stone-500">登録作品数</p>
           <p className="mt-2 text-3xl font-bold text-stone-900">
@@ -333,6 +339,14 @@ export function AwardResultList({ results }: Props) {
           <p className="mt-2 text-3xl font-bold text-stone-900">
             {latestYear}
             <span className="ml-1 text-base">年</span>
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+          <p className="text-sm font-bold text-stone-500">読書案内あり</p>
+          <p className="mt-2 text-3xl font-bold text-stone-900">
+            {recommendationCount}
+            <span className="ml-1 text-base">件</span>
           </p>
         </div>
       </section>
