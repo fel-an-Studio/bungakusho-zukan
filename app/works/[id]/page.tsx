@@ -217,7 +217,7 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
 
               {(mediaExpansions.length > 0 || relatedWorkNames.length > 0) && (
                 <section className="mt-8 rounded-2xl bg-stone-50 p-5">
-                  <h2 className="text-lg font-bold">関連情報</h2>
+                  <h2 className="text-lg font-bold">補足情報</h2>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     {mediaExpansions.length > 0 && (
