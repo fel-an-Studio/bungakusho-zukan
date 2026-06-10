@@ -515,7 +515,7 @@ export function AwardResultList({ results }: Props) {
                         {result.readingRecommendations &&
                           result.readingRecommendations.length > 0 && (
                             <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-amber-700 ring-1 ring-amber-200">
-                              次に読む本あり
+                              次に読みたい一冊あり
                             </span>
                           )}
                       </div>

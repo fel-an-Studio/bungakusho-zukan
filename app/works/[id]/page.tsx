@@ -206,10 +206,10 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
                 ) : (
                   <div className="mt-5 rounded-2xl bg-white p-4">
                     <p className="text-sm font-bold text-stone-500">
-                      おすすめ作品はまだ未登録です。
+                      次に読みたい一冊は準備中です。
                     </p>
                     <p className="mt-2 text-sm leading-7 text-stone-600">
-                      今後、同じ作家の別作品、似たテーマの作品、同じ賞で注目された作品などを追加していきます。
+                      今後、この作品からつながる本を少しずつ追加していきます。
                     </p>
                   </div>
                 )}
