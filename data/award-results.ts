@@ -395,6 +395,26 @@ export const awardResults: AwardResult[] = [
       "東京タワー オカンとボクと、時々、オトン",
     ],
     resultType: "winner",
+    readingRecommendations: [
+      {
+        label: "家族の記憶をたどる",
+        workTitle: "流浪の月",
+        authorName: "凪良ゆう",
+        reason: "家族や世間のまなざしの中で、人と人とのつながりを見つめる物語へ進みたい人に。",
+      },
+      {
+        label: "親子と人生を見つめる",
+        workTitle: "そして、バトンは渡された",
+        authorName: "瀬尾まいこ",
+        reason: "血のつながりだけではない家族の形や、受け取ってきた愛情を感じたい人に。",
+      },
+      {
+        label: "同じく本屋大賞の家族小説",
+        workTitle: "52ヘルツのクジラたち",
+        authorName: "町田そのこ",
+        reason: "痛みを抱えた人たちが、誰かとの出会いによって少しずつ救われていく物語を読みたい人に。",
+      },
+    ],
     sourceName: "本屋大賞",
     sourceUrl: HONTAI_SOURCE_URL,
     verifiedAt: "2026-06-05",
