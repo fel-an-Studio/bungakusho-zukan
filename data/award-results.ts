@@ -343,6 +343,11 @@ export const awardResults: AwardResult[] = [
     publisher: "新潮社",
     summary:
       "高校生活最後の行事「歩行祭」で、夜を徹して歩き続ける生徒たちを描く青春小説です。特別な一日を通して、友人関係や言えなかった思いが少しずつ動き出します。",
+    recommendedFor: [
+      "青春小説を久しぶりに読みたい人",
+      "友人関係や言えなかった気持ちが少しずつ動く物語が好きな人",
+      "大きな事件よりも、特別な一日の空気を味わいたい人",
+    ],
     resultType: "winner",
     readingRecommendations: [
       {
@@ -400,6 +405,11 @@ export const awardResults: AwardResult[] = [
     ],
     summary:
       "母との思い出や家族との時間を、ユーモアと切なさを交えて描く自伝的な小説です。親子の関係や、かけがえのない人との別れについて静かに考えたくなる一冊です。",
+    recommendedFor: [
+      "親子や家族の物語をじっくり読みたい人",
+      "笑えるところも泣けるところもある本を探している人",
+      "大切な人との記憶を思い出すような読書がしたい人",
+    ],
     resultType: "winner",
     readingRecommendations: [
       {
