@@ -380,19 +380,23 @@ export function AwardResultList({ results }: Props) {
                 <button
                   key={summary.awardName}
                   type="button"
-                  onClick={() => setAwardName(summary.awardName)}
+                  onClick={() =>
+                    setAwardName(
+                      awardName === summary.awardName ? "all" : summary.awardName
+                    )
+                  }
                   className={`rounded-xl px-4 py-3 text-left transition ${
                     isSelected
-                      ? "bg-amber-100 ring-2 ring-amber-600"
-                      : "bg-stone-50 hover:bg-amber-50"
+                      ? getAwardBadgeClassName(summary.awardName)
+                      : "bg-stone-50 hover:bg-stone-100"
                   }`}
                 >
                   <p className="text-sm font-bold text-stone-700">
                     {summary.awardName}
                   </p>
-                  <p className="mt-1 text-2xl font-bold text-amber-700">
+                  <p className="mt-1 text-2xl font-bold">
                     {summary.count}
-                    <span className="ml-1 text-sm text-stone-600">件</span>
+                    <span className="ml-1 text-sm">件</span>
                   </p>
                 </button>
               );
