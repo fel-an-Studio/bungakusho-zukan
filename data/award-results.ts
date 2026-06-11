@@ -19,6 +19,15 @@ export type ReadingRecommendation = {
   reason: string;
 };
 
+export type WorkTagGroup = "genre" | "theme" | "mood" | "difficulty";
+
+export type WorkTag = {
+  id: string;
+  label: string;
+  group: WorkTagGroup;
+  relatedTagIds?: string[];
+};
+
 export type AwardName = "芥川賞" | "直木賞" | "本屋大賞";
 
 export type MediaExpansion = {
@@ -43,6 +52,7 @@ export type AwardResult = {
   isbn?: string;
   summary?: string;
   recommendedFor?: string[];
+  tagIds?: string[];
   coverImageUrl?: string;
   readingRecommendations?: ReadingRecommendation[];
   mediaExpansions?: MediaExpansion[];
@@ -64,6 +74,69 @@ const AKUTAGAWA_SOURCE_URL =
 const NAOKI_SOURCE_URL = "https://bungakushinko.or.jp/award/naoki/list.html";
 
 const HONTAI_SOURCE_URL = "https://www.hontai.or.jp/history/";
+
+export const workTags: WorkTag[] = [
+  {
+    id: "youth",
+    label: "青春",
+    group: "genre",
+    relatedTagIds: ["friendship", "easy-to-read", "bright-aftertaste"],
+  },
+  {
+    id: "family",
+    label: "家族",
+    group: "genre",
+    relatedTagIds: ["loss", "quiet-emotion"],
+  },
+  {
+    id: "friendship",
+    label: "友情",
+    group: "theme",
+    relatedTagIds: ["youth", "growth"],
+  },
+  {
+    id: "growth",
+    label: "成長",
+    group: "theme",
+    relatedTagIds: ["youth", "bright-aftertaste"],
+  },
+  {
+    id: "loss",
+    label: "喪失",
+    group: "theme",
+    relatedTagIds: ["family", "quiet-emotion"],
+  },
+  {
+    id: "local",
+    label: "地方",
+    group: "theme",
+    relatedTagIds: ["youth", "easy-to-read"],
+  },
+  {
+    id: "easy-to-read",
+    label: "読みやすい",
+    group: "mood",
+    relatedTagIds: ["beginner-friendly", "bright-aftertaste"],
+  },
+  {
+    id: "bright-aftertaste",
+    label: "明るい読後感",
+    group: "mood",
+    relatedTagIds: ["easy-to-read", "youth"],
+  },
+  {
+    id: "quiet-emotion",
+    label: "静かな感動",
+    group: "mood",
+    relatedTagIds: ["family", "loss"],
+  },
+  {
+    id: "beginner-friendly",
+    label: "初心者向け",
+    group: "difficulty",
+    relatedTagIds: ["easy-to-read", "bright-aftertaste"],
+  },
+];
 
 export const awardResults: AwardResult[] = [
   {
@@ -350,6 +423,14 @@ export const awardResults: AwardResult[] = [
       "友人関係や言えなかった気持ちが少しずつ動く物語が好きな人",
       "大きな事件よりも、特別な一日の空気を味わいたい人",
     ],
+    tagIds: [
+      "youth",
+      "friendship",
+      "growth",
+      "easy-to-read",
+      "bright-aftertaste",
+      "beginner-friendly",
+    ],
     resultType: "winner",
     readingRecommendations: [
       {
@@ -411,6 +492,12 @@ export const awardResults: AwardResult[] = [
       "親子や家族の物語をじっくり読みたい人",
       "笑えるところも泣けるところもある本を探している人",
       "大切な人との記憶を思い出すような読書がしたい人",
+    ],
+    tagIds: [
+      "family",
+      "loss",
+      "quiet-emotion",
+      "easy-to-read",
     ],
     resultType: "winner",
     readingRecommendations: [
@@ -564,6 +651,14 @@ export const awardResults: AwardResult[] = [
       "まっすぐな主人公に元気をもらいたい人",
       "明るく読後感のいい青春小説を読みたい人",
       "関西・滋賀の空気を感じられる物語が好きな人",
+    ],
+    tagIds: [
+      "youth",
+      "growth",
+      "local",
+      "easy-to-read",
+      "bright-aftertaste",
+      "beginner-friendly",
     ],
     readingRecommendations: [
       {

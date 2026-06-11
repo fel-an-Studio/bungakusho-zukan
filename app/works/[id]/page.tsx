@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/SiteHeader";
-import { awardResults } from "@/data/award-results";
+import { awardResults, workTags } from "@/data/award-results";
 import type { AwardName } from "@/data/award-results";
 import {
   createAmazonSearchUrl,
@@ -185,6 +185,30 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
+                </section>
+              )}
+
+              {result.tagIds && result.tagIds.length > 0 && (
+                <section className="mt-4 rounded-2xl border border-stone-200 bg-white p-5">
+                  <h2 className="text-2xl font-bold">タグ</h2>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {result.tagIds.map((tagId) => {
+                      const tag = workTags.find((workTag) => workTag.id === tagId);
+
+                     if (!tag) {
+                        return null;
+                      }
+
+                      return (
+                        <span
+                          key={tag.id}
+                          className="rounded-full bg-stone-100 px-3 py-1 text-sm font-bold text-stone-700 ring-1 ring-stone-200"
+                        >
+                          {tag.label}
+                        </span>
+                      );
+                    })}
+                  </div>
                 </section>
               )}
 

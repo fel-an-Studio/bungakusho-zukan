@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { workTags } from "@/data/award-results";
 import type { AwardCategory, AwardResult, AwardName } from "@/data/award-results";
 import {
   createAmazonSearchUrl,
@@ -623,6 +624,27 @@ export function AwardResultList({ results }: Props) {
                       {result.recommendedFor && result.recommendedFor.length > 0 && (
                         <div className="mt-3 inline-flex rounded-xl bg-amber-50 px-3 py-2 text-sm font-bold text-amber-800 ring-1 ring-amber-100">
                         こんな人に：{result.recommendedFor[0]}
+                        </div>
+                      )}
+
+                      {result.tagIds && result.tagIds.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {result.tagIds.slice(0, 4).map((tagId) => {
+                            const tag = workTags.find((workTag) => workTag.id === tagId);
+
+                            if (!tag) {
+                              return null;
+                            }
+
+                            return (
+                              <span
+                                key={tag.id}
+                                className="rounded-full bg-stone-100 px-3 py-1 text-xs font-bold text-stone-600 ring-1 ring-stone-200"
+                              >
+                                {tag.label}
+                              </span>
+                            );
+                          })}
                         </div>
                       )}
 
