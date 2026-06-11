@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import type { AwardCategory, AwardResult } from "@/data/award-results";
+import type { AwardCategory, AwardResult, AwardName } from "@/data/award-results";
 import {
   createAmazonSearchUrl,
   createLibrarySearchUrl,
@@ -59,6 +59,18 @@ function isValidSortType(value: string): value is SortType {
     value === "author-asc" ||
     value === "title-asc"
   );
+}
+
+function getAwardBadgeClassName(awardName: AwardName) {
+  if (awardName === "芥川賞") {
+    return "bg-sky-100 text-sky-800 ring-1 ring-sky-200";
+  }
+
+  if (awardName === "直木賞") {
+    return "bg-violet-100 text-violet-800 ring-1 ring-violet-200";
+  }
+
+  return "bg-amber-100 text-amber-800 ring-1 ring-amber-200";
 }
 
 function getSortTypeLabel(sortType: SortType) {
@@ -547,11 +559,12 @@ export function AwardResultList({ results }: Props) {
 
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
-                          {result.categoryLabel}
-                        </span>
 
-                        <span className="rounded-full bg-stone-200 px-3 py-1 text-xs font-bold text-stone-700">
+                        <span
+                          className={`rounded-full px-3 py-1 text-xs font-bold ${getAwardBadgeClassName(
+                            result.awardName
+                          )}`}
+                        >
                           {result.awardName}
                         </span>
 

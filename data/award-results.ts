@@ -19,6 +19,8 @@ export type ReadingRecommendation = {
   reason: string;
 };
 
+export type AwardName = "芥川賞" | "直木賞" | "本屋大賞";
+
 export type MediaExpansion = {
   type: "movie" | "anime" | "manga" | "drama" | "stage" | "other";
   typeLabel: "映画化" | "アニメ化" | "漫画化" | "ドラマ化" | "舞台化" | "その他";
@@ -32,7 +34,7 @@ export type AwardResult = {
   id: string;
   category: AwardCategory;
   categoryLabel: AwardCategoryLabel;
-  awardName: "芥川賞" | "直木賞" | "本屋大賞";
+  awardName: AwardName;
   awardYear: number;
   round?: number;
   authorName: string;

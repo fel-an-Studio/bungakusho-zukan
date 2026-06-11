@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/SiteHeader";
 import { awardResults } from "@/data/award-results";
+import type { AwardName } from "@/data/award-results";
 import {
   createAmazonSearchUrl,
   createLibrarySearchUrl,
@@ -23,6 +24,18 @@ export function generateStaticParams() {
   return awardResults.map((result) => ({
     id: result.id,
   }));
+}
+
+function getAwardBadgeClassName(awardName: AwardName) {
+  if (awardName === "芥川賞") {
+    return "bg-sky-100 text-sky-800 ring-1 ring-sky-200";
+  }
+
+  if (awardName === "直木賞") {
+    return "bg-violet-100 text-violet-800 ring-1 ring-violet-200";
+  }
+
+  return "bg-amber-100 text-amber-800 ring-1 ring-amber-200";
 }
 
 export default async function WorkDetailPage({ params, searchParams }: Props) {
@@ -90,13 +103,14 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
 
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
-                  {result.categoryLabel}
-                </span>
 
-                <span className="rounded-full bg-stone-200 px-3 py-1 text-xs font-bold text-stone-700">
-                  {result.awardName}
-                </span>
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-bold ${getAwardBadgeClassName(
+                  result.awardName
+                )}`}
+              >
+                {result.awardName}
+              </span>
 
                 <span className="text-sm text-stone-500">
                   {result.awardYear}年
