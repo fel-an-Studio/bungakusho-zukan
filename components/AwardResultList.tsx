@@ -603,6 +603,12 @@ export function AwardResultList({ results }: Props) {
                           </p>
                       )}
 
+                      {result.recommendedFor && result.recommendedFor.length > 0 && (
+                        <p className="mt-2 text-sm font-bold text-amber-700">
+                          おすすめ：{result.recommendedFor[0]}
+                        </p>
+                      )}
+
                       {result.sourceName && (
                         <p className="mt-3 text-xs text-stone-500">
                           出典：
