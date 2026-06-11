@@ -604,9 +604,9 @@ export function AwardResultList({ results }: Props) {
                       )}
 
                       {result.recommendedFor && result.recommendedFor.length > 0 && (
-                        <p className="mt-2 text-sm font-bold text-amber-700">
-                          おすすめ：{result.recommendedFor[0]}
-                        </p>
+                        <div className="mt-3 inline-flex rounded-xl bg-amber-50 px-3 py-2 text-sm font-bold text-amber-800 ring-1 ring-amber-100">
+                        こんな人に：{result.recommendedFor[0]}
+                        </div>
                       )}
 
                       {result.sourceName && (
