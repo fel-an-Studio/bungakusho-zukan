@@ -98,6 +98,7 @@ export function AwardResultList({ results }: Props) {
   const [awardYear, setAwardYear] = useState("all");
   const [sortType, setSortType] = useState<SortType>("year-desc");
   const [hasRecommendationsOnly, setHasRecommendationsOnly] = useState(false);
+  const [selectedTagId, setSelectedTagId] = useState("all");
   const [hasLoadedUrlParams, setHasLoadedUrlParams] = useState(false);
 
   const awardCount = new Set(results.map((result) => result.awardName)).size;
@@ -158,6 +159,13 @@ export function AwardResultList({ results }: Props) {
     if (hasRecommendationsOnly) {
       conditions.push("次に読みたい一冊あり");
     }
+    if (selectedTagId !== "all") {
+      const selectedTag = workTags.find((tag) => tag.id === selectedTagId);
+
+      if (selectedTag) {
+        conditions.push(`タグ: ${selectedTag.label}`);
+      }
+    }
 
     return conditions;
   }, [awardName, awardYear, category, keyword, sortType, hasRecommendationsOnly,]);
@@ -203,6 +211,7 @@ export function AwardResultList({ results }: Props) {
       searchParams.get("recommendations") === "true";
 
     setKeyword(urlKeyword);
+    const urlTagId = searchParams.get("tag") ?? "all";
 
     if (urlCategory === "all" || isValidCategory(urlCategory)) {
       setCategory(urlCategory as CategoryFilter);
@@ -222,6 +231,7 @@ export function AwardResultList({ results }: Props) {
     if (isValidSortType(urlSortType)) {
       setSortType(urlSortType);
         setHasRecommendationsOnly(urlHasRecommendationsOnly);
+        setSelectedTagId(urlTagId);
     }
 
     setHasLoadedUrlParams(true);
@@ -258,11 +268,28 @@ export function AwardResultList({ results }: Props) {
       searchParams.set("recommendations", "true");
     }
 
+    if (selectedTagId !== "all") {
+      searchParams.set("tag", selectedTagId);
+    }
+
+    if (selectedTagId !== "all") {
+      searchParams.set("tag", selectedTagId);
+    }
+
     const queryString = searchParams.toString();
     const newUrl = queryString ? `?${queryString}` : window.location.pathname;
 
     window.history.replaceState(null, "", newUrl);
-  }, [awardName, awardYear, category, hasLoadedUrlParams, keyword, sortType, hasRecommendationsOnly]);
+  }, [
+    awardName,
+    awardYear,
+    category,
+    hasLoadedUrlParams,
+    keyword,
+    sortType,
+    hasRecommendationsOnly,
+    selectedTagId,
+  ]);
 
   const filteredResults = useMemo(() => {
     const normalizedKeyword = keyword.trim().toLowerCase();
@@ -275,6 +302,14 @@ export function AwardResultList({ results }: Props) {
       ) {
         return false;
       }
+
+      if (
+       selectedTagId !== "all" &&
+       (!result.tagIds || !result.tagIds.includes(selectedTagId))
+      ) {
+        return false;
+      }
+
       const matchesKeyword =
         normalizedKeyword === "" ||
         result.authorName.toLowerCase().includes(normalizedKeyword) ||
@@ -309,7 +344,16 @@ export function AwardResultList({ results }: Props) {
 
       return a.workTitle.localeCompare(b.workTitle, "ja");
     });
-  }, [awardName, awardYear, category, keyword, results, sortType, hasRecommendationsOnly,]);
+  }, [
+    awardName,
+    awardYear,
+    category,
+    keyword,
+    results,
+    sortType,
+    hasRecommendationsOnly,
+    selectedTagId,
+  ]);
 
   function resetFilters() {
     setKeyword("");
@@ -318,6 +362,7 @@ export function AwardResultList({ results }: Props) {
     setAwardYear("all");
     setSortType("year-desc");
     setHasRecommendationsOnly(false);
+    setSelectedTagId("all");
   }
 
   return (
@@ -637,12 +682,18 @@ export function AwardResultList({ results }: Props) {
                             }
 
                             return (
-                              <span
+                              <button
                                 key={tag.id}
-                                className="rounded-full bg-stone-100 px-3 py-1 text-xs font-bold text-stone-600 ring-1 ring-stone-200"
+                                type="button"
+                                onClick={() => setSelectedTagId(tag.id)}
+                                className={`rounded-full px-3 py-1 text-xs font-bold ring-1 transition ${
+                                  selectedTagId === tag.id
+                                    ? "bg-amber-100 text-amber-800 ring-amber-200"
+                                    : "bg-stone-100 text-stone-600 ring-stone-200 hover:bg-amber-50 hover:text-amber-800"
+                                }`}
                               >
                                 {tag.label}
-                              </span>
+                              </button>
                             );
                           })}
                         </div>
