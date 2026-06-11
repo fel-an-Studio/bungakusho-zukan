@@ -163,6 +163,17 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
                 </section>
               )}
 
+              {result.recommendedFor && result.recommendedFor.length > 0 && (
+                <section className="mt-4 rounded-2xl border border-stone-200 bg-white p-5">
+                  <h2 className="text-2xl font-bold">こんな人におすすめ</h2>
+                  <ul className="mt-3 list-disc space-y-2 pl-6 leading-7 text-stone-700">
+                    {result.recommendedFor.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
               <section className="mt-8 rounded-2xl border border-amber-100 bg-amber-50 p-5">
                 <h2 className="text-lg font-bold">
                   次に読みたい一冊

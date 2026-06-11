@@ -40,6 +40,7 @@ export type AwardResult = {
   publisher?: string;
   isbn?: string;
   summary?: string;
+  recommendedFor?: string[];
   coverImageUrl?: string;
   readingRecommendations?: ReadingRecommendation[];
   mediaExpansions?: MediaExpansion[];
@@ -546,7 +547,12 @@ export const awardResults: AwardResult[] = [
     workTitle: "成瀬は天下を取りにいく",
     publisher: "新潮社",
     summary:
-        "滋賀県大津市に暮らす中学生・成瀬あかりが、閉店する百貨店に通ったり、漫才に挑戦したりしながら、自分の信じた道をまっすぐ進んでいく青春小説です。",
+      "滋賀県大津市に暮らす中学生・成瀬あかりが、閉店する百貨店に通ったり、漫才に挑戦したりしながら、自分の信じた道をまっすぐ進んでいく青春小説です。",
+    recommendedFor: [
+      "まっすぐな主人公に元気をもらいたい人",
+      "明るく読後感のいい青春小説を読みたい人",
+      "関西・滋賀の空気を感じられる物語が好きな人",
+    ],
     readingRecommendations: [
       {
         label: "同じ本屋大賞で注目",
