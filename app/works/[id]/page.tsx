@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/SiteHeader";
-import { awardResults, workTags } from "@/data/award-results";
+import { awardResults, questionTags, workTags } from "@/data/award-results";
 import type { AwardName } from "@/data/award-results";
 import {
   createAmazonSearchUrl,
@@ -174,6 +174,44 @@ export default async function WorkDetailPage({ params, searchParams }: Props) {
                 <section className="mt-8 rounded-2xl border border-stone-200 bg-white p-5">
                   <h2 className="text-2xl font-bold">どんな本？</h2>
                   <p className="mt-3 leading-8 text-stone-700">{result.summary}</p>
+                </section>
+              )}
+
+              {result.questions && result.questions.length > 0 && (
+                <section className="mt-4 rounded-2xl border border-stone-200 bg-white p-5">
+                  <h2 className="text-2xl font-bold">この本が連れてくる問い</h2>
+                  <p className="mt-2 text-sm leading-6 text-stone-600">
+                    答えを出すためではなく、この本を読みながら考えてみたい問いです。
+                  </p>
+
+                  <div className="mt-4 space-y-3">
+                    {result.questions.map((question) => {
+                      const questionTag = questionTags.find(
+                        (tag) => tag.id === question.tagId
+                      );
+
+                      return (
+                        <div
+                          key={`${question.tagId}-${question.question}`}
+                          className="rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-100"
+                        >
+                          <div className="flex flex-wrap gap-2">
+                            {questionTag && (
+                              <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-amber-800 ring-1 ring-amber-200">
+                                {questionTag.label}
+                              </span>
+                            )}
+                            <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-stone-600 ring-1 ring-stone-200">
+                              {question.guideLabel}
+                            </span>
+                          </div>
+                          <p className="mt-3 text-base font-bold leading-7 text-stone-900">
+                            {question.question}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </section>
               )}
 

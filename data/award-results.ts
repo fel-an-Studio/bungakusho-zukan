@@ -28,6 +28,56 @@ export type WorkTag = {
   relatedTagIds?: string[];
 };
 
+export const questionTags: QuestionTag[] = [
+  {
+    id: "question-time",
+    label: "時間",
+  },
+  {
+    id: "question-self",
+    label: "自分",
+  },
+  {
+    id: "question-life",
+    label: "いのち",
+  },
+  {
+    id: "question-freedom",
+    label: "自由",
+  },
+  {
+    id: "question-rightness",
+    label: "正しさ",
+  },
+  {
+    id: "question-family",
+    label: "家族",
+  },
+  {
+    id: "question-memory",
+    label: "記憶",
+  },
+  {
+    id: "question-place",
+    label: "居場所",
+  },
+  {
+    id: "question-friendship",
+    label: "友情",
+  },
+];
+
+export type QuestionTag = {
+  id: string;
+  label: string;
+};
+
+export type WorkQuestion = {
+  tagId: string;
+  guideLabel: "やさしく考える" | "じっくり考える" | "物語で考える";
+  question: string;
+};
+
 export type AwardName = "芥川賞" | "直木賞" | "本屋大賞";
 
 export type MediaExpansion = {
@@ -53,6 +103,8 @@ export type AwardResult = {
   summary?: string;
   recommendedFor?: string[];
   tagIds?: string[];
+  questionTagIds?: string[];
+  questions?: WorkQuestion[];
   coverImageUrl?: string;
   readingRecommendations?: ReadingRecommendation[];
   mediaExpansions?: MediaExpansion[];
@@ -431,6 +483,24 @@ export const awardResults: AwardResult[] = [
       "bright-aftertaste",
       "beginner-friendly",
     ],
+    questionTagIds: [
+      "question-self",
+      "question-freedom",
+    ],
+    questions: [
+      {
+        tagId: "question-self",
+        guideLabel: "物語で考える",
+        question:
+          "自分の信じたことを、そのままやってみる強さとは何か。",
+      },
+      {
+        tagId: "question-freedom",
+        guideLabel: "やさしく考える",
+        question:
+          "周りと少し違うままでいることは、どうして人を惹きつけるのか。",
+      },
+    ],
     resultType: "winner",
     readingRecommendations: [
       {
@@ -498,6 +568,25 @@ export const awardResults: AwardResult[] = [
       "loss",
       "quiet-emotion",
       "easy-to-read",
+    ],
+    questionTagIds: [
+      "question-family",
+      "question-memory",
+      "question-life",
+    ],
+    questions: [
+      {
+        tagId: "question-family",
+        guideLabel: "じっくり考える",
+        question:
+          "家族との時間は、離れてからどんな形で残るのか。",
+      },
+      {
+        tagId: "question-life",
+        guideLabel: "物語で考える",
+        question:
+          "大切な人を失ったあと、人は何を受け取って生きていくのか。",
+      },
     ],
     resultType: "winner",
     readingRecommendations: [
@@ -659,6 +748,25 @@ export const awardResults: AwardResult[] = [
       "easy-to-read",
       "bright-aftertaste",
       "beginner-friendly",
+    ],
+    questionTagIds: [
+      "question-time",
+      "question-friendship",
+      "question-self",
+    ],
+    questions: [
+      {
+        tagId: "question-time",
+        guideLabel: "物語で考える",
+        question:
+          "特別な一日は、なぜあとから人生の中で大きな意味を持つのか。",
+      },
+      {
+        tagId: "question-friendship",
+        guideLabel: "やさしく考える",
+        question:
+          "言えなかった気持ちは、どんな時間を通して少しずつ動き出すのか。",
+      },
     ],
     readingRecommendations: [
       {

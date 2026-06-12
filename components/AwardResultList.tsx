@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { workTags } from "@/data/award-results";
+import { questionTags, workTags } from "@/data/award-results";
 import type { AwardCategory, AwardResult, AwardName } from "@/data/award-results";
 import {
   createAmazonSearchUrl,
@@ -98,7 +98,7 @@ export function AwardResultList({ results }: Props) {
   const [awardYear, setAwardYear] = useState("all");
   const [sortType, setSortType] = useState<SortType>("year-desc");
   const [hasRecommendationsOnly, setHasRecommendationsOnly] = useState(false);
-  const [selectedTagId, setSelectedTagId] = useState("all");
+  const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
   const [hasLoadedUrlParams, setHasLoadedUrlParams] = useState(false);
 
   const awardCount = new Set(results.map((result) => result.awardName)).size;
@@ -159,16 +159,22 @@ export function AwardResultList({ results }: Props) {
     if (hasRecommendationsOnly) {
       conditions.push("次に読みたい一冊あり");
     }
-    if (selectedTagId !== "all") {
-      const selectedTag = workTags.find((tag) => tag.id === selectedTagId);
 
-      if (selectedTag) {
-        conditions.push(`タグ: ${selectedTag.label}`);
+    if (selectedTagIds.length > 0) {
+      const selectedTagLabels = selectedTagIds
+        .map((selectedTagId) => {
+          const selectedTag = workTags.find((tag) => tag.id === selectedTagId);
+          return selectedTag?.label;
+        })
+        .filter(Boolean);
+
+      if (selectedTagLabels.length > 0) {
+        conditions.push(`タグ: ${selectedTagLabels.join(" × ")}`);
       }
     }
 
     return conditions;
-  }, [awardName, awardYear, category, keyword, sortType, hasRecommendationsOnly,]);
+  }, [awardName, awardYear, category, keyword, sortType, hasRecommendationsOnly, selectedTagIds]);
 
   const currentListUrl = useMemo(() => {
     const searchParams = new URLSearchParams();
@@ -211,7 +217,7 @@ export function AwardResultList({ results }: Props) {
       searchParams.get("recommendations") === "true";
 
     setKeyword(urlKeyword);
-    const urlTagId = searchParams.get("tag") ?? "all";
+    const urlTagIds = searchParams.get("tags")?.split(",").filter(Boolean) ?? [];
 
     if (urlCategory === "all" || isValidCategory(urlCategory)) {
       setCategory(urlCategory as CategoryFilter);
@@ -231,7 +237,7 @@ export function AwardResultList({ results }: Props) {
     if (isValidSortType(urlSortType)) {
       setSortType(urlSortType);
         setHasRecommendationsOnly(urlHasRecommendationsOnly);
-        setSelectedTagId(urlTagId);
+        setSelectedTagIds(urlTagIds);
     }
 
     setHasLoadedUrlParams(true);
@@ -268,12 +274,8 @@ export function AwardResultList({ results }: Props) {
       searchParams.set("recommendations", "true");
     }
 
-    if (selectedTagId !== "all") {
-      searchParams.set("tag", selectedTagId);
-    }
-
-    if (selectedTagId !== "all") {
-      searchParams.set("tag", selectedTagId);
+    if (selectedTagIds.length > 0) {
+      searchParams.set("tags", selectedTagIds.join(","));
     }
 
     const queryString = searchParams.toString();
@@ -288,7 +290,7 @@ export function AwardResultList({ results }: Props) {
     keyword,
     sortType,
     hasRecommendationsOnly,
-    selectedTagId,
+    selectedTagIds,
   ]);
 
   const filteredResults = useMemo(() => {
@@ -304,8 +306,11 @@ export function AwardResultList({ results }: Props) {
       }
 
       if (
-       selectedTagId !== "all" &&
-       (!result.tagIds || !result.tagIds.includes(selectedTagId))
+        selectedTagIds.length > 0 &&
+        (!result.tagIds ||
+          !selectedTagIds.every((selectedTagId) =>
+            result.tagIds?.includes(selectedTagId)
+          ))
       ) {
         return false;
       }
@@ -352,7 +357,7 @@ export function AwardResultList({ results }: Props) {
     results,
     sortType,
     hasRecommendationsOnly,
-    selectedTagId,
+    selectedTagIds,
   ]);
 
   function resetFilters() {
@@ -362,7 +367,7 @@ export function AwardResultList({ results }: Props) {
     setAwardYear("all");
     setSortType("year-desc");
     setHasRecommendationsOnly(false);
-    setSelectedTagId("all");
+    setSelectedTagIds([]);
   }
 
   return (
@@ -685,15 +690,47 @@ export function AwardResultList({ results }: Props) {
                               <button
                                 key={tag.id}
                                 type="button"
-                                onClick={() => setSelectedTagId(tag.id)}
+                                onClick={() =>
+                                  setSelectedTagIds((currentTagIds) =>
+                                    currentTagIds.includes(tag.id)
+                                      ? currentTagIds.filter((currentTagId) => currentTagId !== tag.id)
+                                      : [...currentTagIds, tag.id]
+                                  )
+                                }
                                 className={`rounded-full px-3 py-1 text-xs font-bold ring-1 transition ${
-                                  selectedTagId === tag.id
+                                  selectedTagIds.includes(tag.id)
                                     ? "bg-amber-100 text-amber-800 ring-amber-200"
                                     : "bg-stone-100 text-stone-600 ring-stone-200 hover:bg-amber-50 hover:text-amber-800"
                                 }`}
                               >
                                 {tag.label}
                               </button>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      {result.questionTagIds && result.questionTagIds.length > 0 && (
+                        <div className="mt-3 flex flex-wrap items-center gap-2">
+                          <span className="text-xs font-bold text-stone-500">
+                            問い
+                          </span>
+                          {result.questionTagIds.slice(0, 3).map((questionTagId) => {
+                            const questionTag = questionTags.find(
+                              (tag) => tag.id === questionTagId
+                            );
+
+                            if (!questionTag) {
+                              return null;
+                            }
+
+                            return (
+                              <span
+                                key={questionTag.id}
+                                className="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-800 ring-1 ring-amber-100"
+                              >
+                                {questionTag.label}
+                              </span>
                             );
                           })}
                         </div>
