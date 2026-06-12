@@ -99,6 +99,7 @@ export function AwardResultList({ results }: Props) {
   const [sortType, setSortType] = useState<SortType>("year-desc");
   const [hasRecommendationsOnly, setHasRecommendationsOnly] = useState(false);
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
+  const [selectedQuestionTagIds, setSelectedQuestionTagIds] = useState<string[]>([]);
   const [hasLoadedUrlParams, setHasLoadedUrlParams] = useState(false);
 
   const awardCount = new Set(results.map((result) => result.awardName)).size;
@@ -173,8 +174,23 @@ export function AwardResultList({ results }: Props) {
       }
     }
 
+    if (selectedQuestionTagIds.length > 0) {
+      const selectedQuestionTagLabels = selectedQuestionTagIds
+        .map((selectedQuestionTagId) => {
+          const selectedQuestionTag = questionTags.find(
+            (tag) => tag.id === selectedQuestionTagId
+          );
+          return selectedQuestionTag?.label;
+        })
+        .filter(Boolean);
+
+      if (selectedQuestionTagLabels.length > 0) {
+        conditions.push(`問い: ${selectedQuestionTagLabels.join(" × ")}`);
+      }
+    }
+
     return conditions;
-  }, [awardName, awardYear, category, keyword, sortType, hasRecommendationsOnly, selectedTagIds]);
+  }, [awardName, awardYear, category, keyword, sortType, hasRecommendationsOnly, selectedTagIds, selectedQuestionTagIds]);
 
   const currentListUrl = useMemo(() => {
     const searchParams = new URLSearchParams();
@@ -219,6 +235,9 @@ export function AwardResultList({ results }: Props) {
     setKeyword(urlKeyword);
     const urlTagIds = searchParams.get("tags")?.split(",").filter(Boolean) ?? [];
 
+    const urlQuestionTagIds =
+      searchParams.get("questions")?.split(",").filter(Boolean) ?? [];
+
     if (urlCategory === "all" || isValidCategory(urlCategory)) {
       setCategory(urlCategory as CategoryFilter);
     }
@@ -238,6 +257,7 @@ export function AwardResultList({ results }: Props) {
       setSortType(urlSortType);
         setHasRecommendationsOnly(urlHasRecommendationsOnly);
         setSelectedTagIds(urlTagIds);
+        setSelectedQuestionTagIds(urlQuestionTagIds);
     }
 
     setHasLoadedUrlParams(true);
@@ -278,6 +298,10 @@ export function AwardResultList({ results }: Props) {
       searchParams.set("tags", selectedTagIds.join(","));
     }
 
+    if (selectedQuestionTagIds.length > 0) {
+      searchParams.set("questions", selectedQuestionTagIds.join(","));
+    }
+
     const queryString = searchParams.toString();
     const newUrl = queryString ? `?${queryString}` : window.location.pathname;
 
@@ -291,6 +315,7 @@ export function AwardResultList({ results }: Props) {
     sortType,
     hasRecommendationsOnly,
     selectedTagIds,
+    selectedQuestionTagIds,
   ]);
 
   const filteredResults = useMemo(() => {
@@ -310,6 +335,16 @@ export function AwardResultList({ results }: Props) {
         (!result.tagIds ||
           !selectedTagIds.every((selectedTagId) =>
             result.tagIds?.includes(selectedTagId)
+          ))
+      ) {
+        return false;
+      }
+
+      if (
+        selectedQuestionTagIds.length > 0 &&
+        (!result.questionTagIds ||
+          !selectedQuestionTagIds.every((selectedQuestionTagId) =>
+            result.questionTagIds?.includes(selectedQuestionTagId)
           ))
       ) {
         return false;
@@ -358,6 +393,7 @@ export function AwardResultList({ results }: Props) {
     sortType,
     hasRecommendationsOnly,
     selectedTagIds,
+    selectedQuestionTagIds,
   ]);
 
   function resetFilters() {
@@ -368,6 +404,7 @@ export function AwardResultList({ results }: Props) {
     setSortType("year-desc");
     setHasRecommendationsOnly(false);
     setSelectedTagIds([]);
+    setSelectedQuestionTagIds([]);
   }
 
   return (
@@ -725,12 +762,26 @@ export function AwardResultList({ results }: Props) {
                             }
 
                             return (
-                              <span
+                              <button
                                 key={questionTag.id}
-                                className="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-800 ring-1 ring-amber-100"
+                                type="button"
+                                onClick={() =>
+                                  setSelectedQuestionTagIds((currentQuestionTagIds) =>
+                                    currentQuestionTagIds.includes(questionTag.id)
+                                      ? currentQuestionTagIds.filter(
+                                          (currentQuestionTagId) => currentQuestionTagId !== questionTag.id
+                                        )
+                                      : [...currentQuestionTagIds, questionTag.id]
+                                  )
+                                }
+                                className={`rounded-full px-3 py-1 text-xs font-bold ring-1 transition ${
+                                  selectedQuestionTagIds.includes(questionTag.id)
+                                    ? "bg-amber-200 text-amber-950 ring-amber-300"
+                                    : "bg-amber-50 text-amber-800 ring-amber-100 hover:bg-amber-100"
+                                }`}
                               >
-                                {questionTag.label}
-                              </span>
+                               {questionTag.label}
+                              </button>
                             );
                           })}
                         </div>
